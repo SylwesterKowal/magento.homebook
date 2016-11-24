@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Wm21w_Homebook>
+      <version>0.1.0</version>
+    </Wm21w_Homebook>
+  </modules>
+  <global>
+    <helpers>
+      <homebook>
+        <class>Wm21w_Homebook_Helper</class>
+      </homebook>
+    </helpers>
+	<blocks>
+	  <homebook>
+		<class>Wm21w_Homebook_Block</class>
+	  </homebook>
+	</blocks>
+	<resources>
+	  <homebook_setup>
+		<setup>
+		  <module>Wm21w_Homebook</module>
+		</setup>
+		<connection>
+		  <use>core_setup</use>
+		</connection>
+	  </homebook_setup>
+	  <homebook_write>
+		<connection>
+		  <use>core_write</use>
+		</connection>
+	  </homebook_write>
+	  <homebook_read>
+		<connection>
+		  <use>core_read</use>
+		</connection>
+	  </homebook_read>
+	</resources>
+  </global>
+  <admin>
+	<routers>
+	  <homebook>
+	    <use>admin</use>
+		<args>
+		  <module>Wm21w_Homebook</module>
+		  <frontName>admin_homebook</frontName>
+		</args>
+	  </homebook>
+	</routers>
+  </admin>
+  <adminhtml>
+	<menu>
+	  <homebook module="homebook">
+		<title>Homebook</title>
+		<sort_order>100</sort_order>
+		<children>
+		  <homebookbackend module="homebook">
+			<title>Home Book XML</title>
+			<sort_order>0</sort_order>
+			<action>admin_homebook/adminhtml_homebookbackend</action>
+		  </homebookbackend>
+		</children>
+	  </homebook>
+	</menu>
+	<acl>
+	  <resources>
+		<all>
+		  <title>Allow Everything</title>
+		</all>
+		<admin>
+		  <children>
+			<homebook translate="title" module="homebook">
+			  <title>Homebook</title>
+			  <sort_order>1000</sort_order>
+			  <children>
+		  <homebookbackend translate="title">
+			<title>Home Book XML</title>
+		  </homebookbackend>
+			  </children>
+			</homebook>
+		  </children>
+		</admin>
+	  </resources>
+	</acl>
+	<layout>
+	  <updates>
+		<homebook>
+		  <file>homebook.xml</file>
+		</homebook>
+	  </updates>
+	</layout>
+  </adminhtml>    
+    <crontab>
+        <jobs>            
+			<homebook_exportdomodi>
+                <schedule><cron_expr>* * * * 0</cron_expr></schedule>
+                <run><model>homebook/cron::exportDomodi</model></run>
+            </homebook_exportdomodi>
+        </jobs>
+    </crontab>
+</config> 

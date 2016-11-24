@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <homebook_adminhtml_homebookbackend_index>
+	<reference name="content">
+	  <block type="homebook/adminhtml_homebookbackend" name="homebookbackend" template="homebook/homebookbackend.phtml"/>
+	</reference>
+  </homebook_adminhtml_homebookbackend_index>
+</layout>
