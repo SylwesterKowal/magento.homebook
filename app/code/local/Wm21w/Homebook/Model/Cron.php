@@ -44,7 +44,7 @@ class Wm21w_Homebook_Model_Cron
         $offer = $this->productXml->createElement("offer");
 
         $offer->appendChild($this->cElement('id', $product->getSku()));
-        $offer->appendChild($this->cElement('url', $product->getUrlKey()));
+        $offer->appendChild($this->cElement('url', Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . $product->getUrlPath()));
         $offer->appendChild($this->cElement('price', $product->getPrice()));
         $offer->appendChild($this->cElement('brand', $product->getAttributeText('manufacturer')));
         $offer->appendChild($this->cElement('avail', 1));
@@ -88,7 +88,8 @@ class Wm21w_Homebook_Model_Cron
         if ($_images) {
             foreach ($_images as $image) {
                 $el = $this->productXml->createElement('img');
-                $img = Mage::helper('catalog/image')->init($product, 'image', $image->getFile());
+//                $img = Mage::helper('catalog/image')->init($product, 'image', $image->getFile());
+                $img = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'catalog/product' . $image->getFile();
                 $el->appendChild($this->productXml->createCDATASection($img));
                 $images->appendChild($el);
             }
