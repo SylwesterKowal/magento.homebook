@@ -1,2 +1,2 @@
 # magento.homebook
-Magento Extension Generate XML for Homebook.pl
+Moduł Magento generujący plik XML z danymi produktów do portalu HomeBook.pl
