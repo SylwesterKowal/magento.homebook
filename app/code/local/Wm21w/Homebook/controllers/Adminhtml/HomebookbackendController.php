@@ -59,15 +59,16 @@ class Wm21w_Homebook_Adminhtml_HomebookbackendController extends Mage_Adminhtml_
         $offer->appendChild($this->cElement('url', Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . $product->getUrlPath()));
         $offer->appendChild($this->cElement('price', $product->getPrice()));
         $offer->appendChild($this->cElement('brand', $product->getAttributeText('manufacturer')));
-        $offer->appendChild($this->cElement('avail', 1));
+        $avil = ($product->isSaleable()) ? 1 : 99;
+        $offer->appendChild($this->cElement('avail', $avil));
         $offer->appendChild($this->cElement('cat', $this->cElementCategories($product)));
         $offer->appendChild($this->cElement('name', $product->getName()));
         $offer->appendChild($this->cElementGallery($product));
-        $offer->appendChild($this->productXml->createElement('size'));
+        $offer->appendChild($this->productXml->createElement('size',''));
         $offer->appendChild($this->productXml->createElement('IsPromoted', 0));
         $offer->appendChild($this->cElement('oldprice', ''));
         $offer->appendChild($this->cElement('desc', $product->getDescription()));
-        $offer->appendChild($this->cElement('gender', ''));
+        $offer->appendChild($this->cElement('gender', 'Męśka i Damska'));
         $offer->appendChild($this->cElementAttr($product));
 
         $this->offersXml->appendChild($offer);
